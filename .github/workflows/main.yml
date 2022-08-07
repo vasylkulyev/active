@@ -27,6 +27,9 @@ jobs:
         with:
           source: '${{ env.DEPLOY_PACKAGE_NAME }}'
           target: '/var/www/html/'
+      
+      - name: All good!
+        run: echo "Everything is OK"
           
   my-cd-part:
     runs-on: ubuntu-latest
