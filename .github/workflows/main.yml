@@ -28,9 +28,11 @@ jobs:
           source: 'index.html'
           target: '/var/www/html/'
           
-      - name: rm everything on server
+      - name: Execute command via SSH
+        uses: appleboy/ssh-action@master
         env:
           USERNAME: ${{ secrets.USERNAME }}
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
-        run: rm *
+        with:
+          script: rm *
