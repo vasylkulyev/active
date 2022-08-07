@@ -1,6 +1,4 @@
 name: CI-CD-Pipeline
-env:
-  DEPLOY_PACKAGE_NAME: "app_${{ github.sha }}.zip"
 on:
   push:
     branches: [ "main" ]
@@ -15,9 +13,6 @@ jobs:
       - name: Git Clone Repository 
         uses: actions/checkout@v3
 
-      - name: Create ZIP Deployment archive
-        run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
-
       - name: SCP files via ssh key
         uses: appleboy/scp-action@master
         env:
@@ -25,14 +20,5 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          source: '${{ env.DEPLOY_PACKAGE_NAME }}'
+          source: 'index.html'
           target: '/var/www/html/'
-          
-      - name: Execute command via SSH
-        uses: appleboy/ssh-action@master
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          HOST: ${{ secrets.HOST }}
-          KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
-        with:
-          script: unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }} && rm ${{ env.DEPLOY_PACKAGE_NAME }}
