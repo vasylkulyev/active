@@ -41,3 +41,4 @@ jobs:
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
           script: unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }} -d /var/www/html/
+          script: rm unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }}
