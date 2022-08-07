@@ -29,7 +29,6 @@ jobs:
           target: '/var/www/html/'
           
       - name: rm everything on server
-        uses: appleboy/ssh-action
         env:
           USERNAME: ${{ secrets.USERNAME }}
           HOST: ${{ secrets.HOST }}
