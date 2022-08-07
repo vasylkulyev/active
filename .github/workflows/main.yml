@@ -25,6 +25,5 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          source: '${{ env.DEPLOY_PACKAGE_NAME }}'
+          source: 'index.html'
           target: '/var/www/html/'
-          command: unzip
