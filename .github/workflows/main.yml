@@ -25,5 +25,5 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          source: './*'
+          source: '${{ env.DEPLOY_PACKAGE_NAME }}'
           target: '/var/www/html/'
