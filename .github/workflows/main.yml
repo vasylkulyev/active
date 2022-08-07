@@ -25,7 +25,7 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          source: 'index.html'
+          source: '${{ env.DEPLOY_PACKAGE_NAME }}'
           target: '/var/www/html/'
           
       - name: Execute command via SSH
@@ -35,4 +35,4 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          script: rm /var/www/html/*
+          script: 'unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }}'
