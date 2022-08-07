@@ -27,4 +27,4 @@ jobs:
         with:
           source: '${{ env.DEPLOY_PACKAGE_NAME }}'
           target: '/var/www/html/'
-          script: unzip
+          command: unzip
