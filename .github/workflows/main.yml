@@ -40,4 +40,4 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
-          command: unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }} -d /var/www/html/
+          script: unzip /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }} -d /var/www/html/ && rm /var/www/html/${{ env.DEPLOY_PACKAGE_NAME }}
