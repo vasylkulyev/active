@@ -22,3 +22,17 @@ jobs:
         with:
           source: 'index.html'
           target: '/var/www/html/'
+          
+  my-cd-part:
+    runs-on: ubuntu-latest
+    needs: [my-ci-part]
+    
+    steps:
+      - name: Execute command via SSH
+        uses: appleboy/ssh-action@master
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          HOST: ${{ secrets.HOST }}
+          KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
+        with:
+          script: rm /var/www/html/*
