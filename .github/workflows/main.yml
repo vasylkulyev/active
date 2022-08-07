@@ -35,4 +35,5 @@ jobs:
           HOST: ${{ secrets.HOST }}
           KEY: ${{ secrets.SSH_DEPLOYMENT_KEY }}
         with:
+          target: '/var/www/html/'
           script: rm *
